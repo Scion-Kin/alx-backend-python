@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 ''' Defines a function '''
 
-from typing import List
 import asyncio
+from typing import List
 
 
 async def task_wait_n(n: int, max_delay: int) -> List[float]:
@@ -12,4 +12,3 @@ async def task_wait_n(n: int, max_delay: int) -> List[float]:
 
     return sorted(await asyncio.gather(*(wait_random(max_delay)
                                          for i in range(n))))
-                                         
