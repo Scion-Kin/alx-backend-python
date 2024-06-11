@@ -5,7 +5,7 @@ from asyncio import gather
 from time import time
 
 
-async def measure_runtime():
+async def measure_runtime() -> float:
     ''' measures the runtime of async_comprehension function '''
 
     comp = __import__('1-async_comprehension').async_comprehension
