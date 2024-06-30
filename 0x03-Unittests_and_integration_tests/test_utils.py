@@ -2,7 +2,6 @@
 ''' Defines a test case '''
 
 from parameterized import parameterized
-from typing import Mapping, Sequence, Union, Dict
 from unittest import TestCase
 from utils import access_nested_map, get_json, memoize
 
@@ -15,9 +14,7 @@ class TestAccessNestedMap(TestCase):
         ({"a": {"b": 2}}, ("a",), {"b": 2}),
         ({"a": {"b": 2}}, ("a", "b"), 2),
     ])
-    def test_access_nested_map(self, nest: Mapping,
-                               path: Sequence,
-                               output: Union[Dict, int]) -> None:
+    def test_access_nested_map(self, nest, path, output):
         ''' Tests the utils access_nested_map function '''
 
         self.assertEqual(access_nested_map(nest, path), output)
@@ -26,7 +23,7 @@ class TestAccessNestedMap(TestCase):
         ({}, ("a",), KeyError),
         ({"a": 1}, ("a", "b"), KeyError)
     ])
-    def test_access_nested_map_exception(self, nest, path, exception) -> None:
+    def test_access_nested_map_exception(self, nest, path, exception):
         ''' Tests the utils access_nested_map function '''
 
         with self.assertRaises(exception):
