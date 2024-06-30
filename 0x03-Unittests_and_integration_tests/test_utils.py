@@ -21,3 +21,13 @@ class TestAccessNestedMap(TestCase):
         ''' Tests the utils access_nested_map function '''
 
         self.assertEqual(access_nested_map(nest, path), output)
+
+    @parameterized.expand([
+        ({}, ("a",), KeyError),
+        ({"a": 1}, ("a", "b"), KeyError)
+    ])
+    def test_access_nested_map_exception(self, nest, path, exception) -> None:
+        ''' Tests the utils access_nested_map function '''
+
+        with self.assertRaises(exception):
+            access_nested_map(nest, path)
