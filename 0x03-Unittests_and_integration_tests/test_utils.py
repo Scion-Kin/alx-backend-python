@@ -17,7 +17,7 @@ class TestAccessNestedMap(TestCase):
     ])
     def test_access_nested_map(self, nest: Mapping,
                                path: Sequence,
-                               output: Union[Dict, int]) -> Union[Dict, int]:
+                               output: Union[Dict, int]) -> None:
         ''' Tests the utils access_nested_map function '''
 
         self.assertEqual(access_nested_map(nest, path), output)
