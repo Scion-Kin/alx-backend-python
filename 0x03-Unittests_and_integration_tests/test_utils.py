@@ -2,7 +2,7 @@
 ''' Defines a test case '''
 
 from parameterized import parameterized
-from unittest import TestCase
+from unittest import TestCase, mock
 from utils import access_nested_map, get_json, memoize
 
 
@@ -28,3 +28,19 @@ class TestAccessNestedMap(TestCase):
 
         with self.assertRaises(exception):
             access_nested_map(nest, path)
+
+
+class TestGetJson(TestCase):
+    ''' Defines a test case '''   
+
+    @parameterized.expand([
+        ("http://example.com", {"payload": True}),
+        ("http://holberton.io", {"payload": False}),
+    ])
+    def test_get_json(self, test_url, test_payload):
+        ''' Tests the get_json function from utils '''
+
+        attrs = {'json.return_value': test_payload}
+        with patch("requests.get", return_value=Mock(**attrs)) as get:
+            self.assertEqual(get_json(test_url), test_payload)
+            get.assert_called_once_with(test_url)         
