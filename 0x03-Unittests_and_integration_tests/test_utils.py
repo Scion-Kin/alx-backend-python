@@ -2,7 +2,8 @@
 ''' Defines a test case '''
 
 from parameterized import parameterized
-from unittest import TestCase, mock
+from unittest import TestCase
+from unittest.mock import Mock, patch
 from utils import access_nested_map, get_json, memoize
 
 
